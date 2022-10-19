@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::post('/sign-in', [AuthController::class, 'signIn'])->name('signIn');
+Route::post('/sign-up', [AuthController::class, 'signUp'])->name('signUp');
 
 Route::middleware('auth')->group(function () {
     Route::get('/', function() {
