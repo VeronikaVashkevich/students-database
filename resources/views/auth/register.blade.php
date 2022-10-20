@@ -4,7 +4,7 @@
 
 @section('content')
 
-<form method="POST" action="{{ route('signUp') }}">
+<form method="POST" action="{{ route('register') }}">
     @csrf
 
     <div class="row mb-3">
