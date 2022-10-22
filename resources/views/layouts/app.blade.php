@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/app.css">
-    <link rel="shortcut icon" href="img/favicon_0.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="shortcut icon" href="/img/favicon_0.png" type="image/x-icon">
     <script src="js/bootstrap.min.js"></script>
     {{-- <script src="js/bootstrap.bundle.min.js"></script> --}}
     <title>@yield('title') - Белорусская Государственная Академия Связи</title>
@@ -40,7 +40,7 @@
                 {{-- https://icons.getbootstrap.com/ --}}
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link link-dark" aria-current="page">
+                        <a href="{{ route('courses.index') }}" class="nav-link link-dark" aria-current="page">
                             <img src="img/book.svg" alt="house icon" class="me-2">
                             Курсы
                         </a>
