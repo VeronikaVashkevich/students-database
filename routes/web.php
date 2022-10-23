@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganizationController;
 use Illuminate\Support\Facades\Auth;
@@ -31,4 +32,5 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('courses', CourseController::class);
     Route::resource('organizations', OrganizationController::class);
+    Route::resource('groups', GroupController::class);
 });

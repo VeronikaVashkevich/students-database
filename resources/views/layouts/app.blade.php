@@ -37,7 +37,6 @@
                     <span class="fs-4">Главная</span>
                 </a>
                 <hr>
-                {{-- https://icons.getbootstrap.com/ --}}
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
                         <a href="{{ route('courses.index') }}" class="nav-link link-dark" aria-current="page">
@@ -58,7 +57,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
+                        <a href="{{ route('groups.index') }}" class="nav-link link-dark">
                             <img src="img/collection.svg" alt="house icon" class="me-2">
                             Группы
                         </a>
