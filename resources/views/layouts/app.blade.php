@@ -52,7 +52,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
+                        <a href="{{ route('organizations.index') }}" class="nav-link link-dark">
                             <img src="img/building.svg" alt="house icon" class="me-2">
                             Организации
                         </a>
