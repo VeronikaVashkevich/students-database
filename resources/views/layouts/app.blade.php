@@ -62,13 +62,14 @@
                             <img src="img/collection.svg" alt="house icon" class="me-2">
                             Группы
                         </a>
-                    </li> 
+                    </li>
                     <li>
-                        {{-- для админов --}}
-                        <a href="#" class="nav-link link-dark">
-                            <img src="img/person-circle.svg" alt="house icon" class="me-2">
-                            Методисты
-                        </a>
+                        @role('admin')
+                            <a href="{{ route('users.index') }}" class="nav-link link-dark">
+                                <img src="img/person-circle.svg" alt="house icon" class="me-2">
+                                Методисты
+                            </a>
+                        @endrole
                     </li>
                 </ul>
                 <hr>

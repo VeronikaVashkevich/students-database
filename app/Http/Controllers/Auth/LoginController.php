@@ -49,7 +49,7 @@ class LoginController extends Controller
     }
 
     protected function authenticated(Request $request, $user)
-{
-    return redirect()->to('/home');
-}
+    {
+        return redirect()->to('/home');
+    } 
 }
