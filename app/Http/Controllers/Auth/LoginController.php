@@ -47,4 +47,9 @@ class LoginController extends Controller
     public function username() {
         return 'login';
     }
+
+    protected function authenticated(Request $request, $user)
+{
+    return redirect()->to('/home');
+}
 }

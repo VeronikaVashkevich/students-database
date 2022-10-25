@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="shortcut icon" href="/img/favicon_0.png" type="image/x-icon">
+    <script src="js/popper.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     {{-- <script src="js/bootstrap.bundle.min.js"></script> --}}
     <title>@yield('title') - Белорусская Государственная Академия Связи</title>
@@ -76,7 +77,7 @@
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="https://github.com/mdo.png" alt="" class="rounded-circle me-2" width="32"
                             height="32">
-                        <strong>Юзер</strong>
+                        <strong>{{ Auth::user()->name }}</strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow" style="">
                         <li><a class="dropdown-item" href="#">Действие</a></li>
@@ -85,7 +86,7 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Выйти</a></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}">Выйти</a></li>
                     </ul>
                 </div>
             </div>
