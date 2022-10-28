@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="shortcut icon" href="/img/favicon_0.png" type="image/x-icon">
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
     {{-- <script src="js/bootstrap.bundle.min.js"></script> --}}
     <title>@yield('title') - Белорусская Государственная Академия Связи</title>
 </head>
@@ -46,7 +47,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
+                        <a href="{{ route('students.index') }}" class="nav-link link-dark">
                             <img src="img/people.svg" alt="house icon" class="me-2">
                             Слушатели
                         </a>

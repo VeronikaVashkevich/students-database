@@ -141,6 +141,9 @@ return [
     'url' => 'The :attribute must be a valid URL.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
+
+    'date_finish_study_error' => 'Дата окончания обучения должна быть больше даты начала обучения',
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
