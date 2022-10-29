@@ -75,7 +75,16 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
-        //
+        $groups = GroupResource::collection(Group::all());
+        $courses = CourseResource::collection(Course::all());
+        $organizations = OrganizationResource::collection(Organization::all());
+
+        return view('students.edit', [
+            'student' => $student,
+            'groups' => $groups,
+            'courses' => $courses,
+            'organizations' => $organizations,
+        ]);
     }
 
     /**
@@ -85,9 +94,12 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $student
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Student $student)
+    public function update(CreateStudentRequest $request, Student $student)
     {
-        //
+        $service = new StudentService();
+        $service->createStudent($request, $student);
+
+        return redirect('/students');
     }
 
     /**

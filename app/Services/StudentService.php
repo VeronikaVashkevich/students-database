@@ -10,7 +10,7 @@ use Illuminate\Validation\ValidationException;
 
 class StudentService extends Service {
     
-    public function createStudent($request) {
+    public function createStudent($request, $studentFromRequest = []) {
         $data = $request->validated();
 
         if (!$this->isValidDates($data)) {
@@ -23,18 +23,28 @@ class StudentService extends Service {
             'date_finish_study',
             'group',
             'organization',
-        ]));
+        ]), $studentFromRequest);
+        
+        if (!empty($studentFromRequest)) {
+            $this->dropExistingCourses($student->id);
+        }
 
-        $courses = $data['courses'];
+        $this->storeCourses($data['courses'], $student);
 
+        return $student;
+    }
+
+    private function dropExistingCourses($studentId) {
+        DB::table('course_student')->where('student_id', $studentId)->delete();
+    }
+
+    public function storeCourses($courses, $student) {
         foreach($courses as $course) {
             DB::table('course_student')->insert([
                 'student_id' => $student->id,
                 'course_id' => $course
             ]);
         }
-
-        return $student;
     }
 
     private function isValidDates($data) {
@@ -47,17 +57,17 @@ class StudentService extends Service {
         return $data;
     }
 
-    private function saveStudent($data) {
+    private function saveStudent($data, $studentFromRequest = []) {
         $data = $this->getFullUserData($data);
 
-        $student = new Student;
+        $student = empty($studentFromRequest) ? new Student : $studentFromRequest;
 
         $student->full_name = $data['full_name'];
         $student->date_start_study = $data['date_start_study'];
         $student->date_finish_study = $data['date_finish_study'];
         $student->group_id = $data['group'];
         $student->organization_id = $data['organization'];
-        $student->note = $data['note'];
+        $student->note = (!empty($student->note) ? $student->note . "\r\n" : '') . $data['note'];
 
         $student->save();
 

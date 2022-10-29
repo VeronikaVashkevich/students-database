@@ -18,7 +18,7 @@
                 <th scope="col">Дата конца обучения</th>
                 <th scope="col">Организация</th>
                 <th scope="col">Прмиечание</th>
-                <th scope="col" colspan="2">Управление</th>
+                <th scope="col">Управление</th>
             </tr>
         </thead>
         <tbody>
@@ -34,9 +34,9 @@
                     <td>{{ $student->date_start_study }}</td>
                     <td>{{ $student->date_finish_study }}</td>
                     <td>{{ $student->organization->name }}</td>
-                    <td>{{ $student->note }}</td>
-                    <td><a href="{{ route('students.edit', $student) }}" class="btn btn-success">Редактировать</a></td>
+                    <td>{!! nl2br(e($student->note)) !!}</td>
                     <td>
+                        <a href="{{ route('students.edit', $student) }}" class="btn btn-success mb-1">Редактировать</a>
                         <form action="{{ route('students.destroy', $student->id) }}" method="post">
                             @method('DELETE')
                             @csrf
