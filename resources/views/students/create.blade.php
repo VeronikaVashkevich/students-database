@@ -59,7 +59,7 @@
         <label for="courses" class="col-md-4 col-form-label text-md-end">Курсы</label>
 
         <div class="col-md-6">
-            <select id="courses" class="form-control @error('courses') is-invalid @enderror" name="courses[]"  multiple="multiple" >
+            <select id="courses" class="@error('courses') is-invalid @enderror" name="courses[]"  multiple="multiple" >
                 @foreach($courses as $course)
                     <option value="{{ $course->id }}">{{ $course->name }}</option>
                 @endforeach
@@ -77,7 +77,7 @@
         <label for="group" class="col-md-4 col-form-label text-md-end">Группа</label>
 
         <div class="col-md-6">
-            <select id="group" class="form-control @error('group') is-invalid @enderror" name="group">
+            <select id="group" class="form-select @error('group') is-invalid @enderror" name="group">
                 @foreach($groups as $group)
                     <option value="{{ $group->id }}">{{ $group->name }}</option>
                 @endforeach
@@ -95,7 +95,7 @@
         <label for="organization" class="col-md-4 col-form-label text-md-end">Направившая организация</label>
 
         <div class="col-md-6">
-            <select id="organization" class="form-control @error('organization') is-invalid @enderror" name="organization">
+            <select id="organization" class="form-select @error('organization') is-invalid @enderror" name="organization">
                 @foreach($organizations as $organization)
                     <option value="{{ $organization->id }}">{{ $organization->name }}</option>
                 @endforeach
