@@ -9,6 +9,7 @@ use App\Models\Course;
 use App\Models\Group;
 use App\Models\Organization;
 use App\Models\Student;
+use PDF;
 use App\Services\PrintService;
 use Illuminate\Http\Request;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
@@ -32,5 +33,13 @@ class PrintController extends Controller
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="report-' . date('d-m-Y H-i-s') .'"');
         $writer->save('php://output');
+    }
+
+    public function printPdf(Request $request) {
+        $service = new PrintService();
+        $students = $service->getStudentsByFilters($request->all());
+
+        $pdf = PDF::loadView('pdf.print', compact('students'))->setPaper('a4', 'landscape');
+        return $pdf->download('report' . date('d-m-Y H-i-s') . '.pdf');
     }
 }

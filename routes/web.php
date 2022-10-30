@@ -41,4 +41,5 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/print', [PrintController::class, 'print'])->name('print');
     Route::post('/print-excel', [PrintController::class, 'printExcel'])->name('printExcel');
+    Route::post('/print-pdf', [PrintController::class, 'printPdf'])->name('printPdf');
 });
