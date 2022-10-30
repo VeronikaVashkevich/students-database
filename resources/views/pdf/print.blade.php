@@ -28,6 +28,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">ФИО</th>
+                <th scope="col">Группа</th>
                 <th scope="col">Курсы</th>
                 <th scope="col">Дата начала обучения</th>
                 <th scope="col">Дата конца обучения</th>
@@ -40,6 +41,7 @@
                 <tr class="student">
                     <th scope="row">{{ $student->id }}</th>
                     <td>{{ $student->full_name }}</td>
+                    <td>{{ $student->group->name }}</td>
                     <td>
                         @foreach ($student->courses as $course)
                             {{ $course->name }} <br />
