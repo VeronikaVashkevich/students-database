@@ -30,8 +30,8 @@
                             {{ $course->name }} <br />
                         @endforeach
                     </td>
-                    <td>{{ $student->date_start_study }}</td>
-                    <td>{{ $student->date_finish_study }}</td>
+                    <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>
+                    <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>
                     <td>{{ $student->organization->name }}</td>
                     <td>{!! nl2br(e($student->note)) !!}</td>
                 </tr>
