@@ -81,14 +81,14 @@
                     <td>Вид печати</td>
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="source" id="sourcePdf" checked value="pdf">
+                            <input class="form-check-input" type="radio" name="source" id="sourcePdf" value="pdf" checked="checked">
                             <label class="form-check-label" for="sourcePdf">
                                 PDF
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="source" id="sourceExcel" value="excel">
-                            <label class="form-check-label" for="sourceExcel">
+                            <label class="form-check-label" for="sourceExcel" >
                                 Excel
                             </label>
                         </div>
@@ -104,7 +104,7 @@
             let form = $('form');
 
             $('[name="source"]').change(function () {
-                $('form').attr('action', '/print-' + $(this).val());
+                $('form').attr('action', '/print-' + $('[name="source"]:checked').val());
             }).change()
         });
     </script>
