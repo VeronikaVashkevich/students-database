@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Resources\OrganizationResource;
+use App\Models\Organization;
+use App\Models\Student;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $students = Student::all();
+        $organizations = OrganizationResource::collection(Organization::all());
+
+        return view('home', compact('students', 'organizations'));
     }
 }
