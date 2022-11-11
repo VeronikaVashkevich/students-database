@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\EducationProgramController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganizationController;
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('groups', GroupController::class);
     Route::resource('users', UserController::class);
     Route::resource('students', StudentController::class);
+    Route::resource('educationPrograms', EducationProgramController::class);
 
     Route::get('/print', [PrintController::class, 'print'])->name('print');
     Route::post('/print-excel', [PrintController::class, 'printExcel'])->name('printExcel');

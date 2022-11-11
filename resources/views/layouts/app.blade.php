@@ -67,6 +67,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('educationPrograms.index') }}" class="nav-link link-dark">
+                            <img src="img/journal-text.svg" alt="house icon" class="me-2">
+                            Учебные программы
+                        </a>
+                    </li>
+                    <li>
                         @role('admin')
                             <a href="{{ route('users.index') }}" class="nav-link link-dark">
                                 <img src="img/person-circle.svg" alt="house icon" class="me-2">
@@ -79,6 +85,7 @@
                             <img src="img/printer.svg" alt="house icon" class="me-2">
                             Печать отчетов
                         </a>
+                    </li>
                 </ul>
                 <hr>
                 <div class="dropdown">
