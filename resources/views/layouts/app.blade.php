@@ -73,6 +73,12 @@
                         </a>
                     </li>
                     <li>
+                        <a href="{{ route('professionalDevelopmentPrograms.index') }}" class="nav-link link-dark">
+                            <img src="img/card-text.svg" alt="house icon" class="me-2">
+                            Программы повышения квалификации
+                        </a>
+                    </li>
+                    <li>
                         @role('admin')
                             <a href="{{ route('users.index') }}" class="nav-link link-dark">
                                 <img src="img/person-circle.svg" alt="house icon" class="me-2">

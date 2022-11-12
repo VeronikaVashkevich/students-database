@@ -7,6 +7,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganizationController;
 use App\Http\Controllers\PrintController;
+use App\Http\Controllers\ProfessionalDevelopmentProgramController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('students', StudentController::class);
     Route::resource('educationPrograms', EducationProgramController::class);
+    Route::resource('professionalDevelopmentPrograms', ProfessionalDevelopmentProgramController::class);
 
     Route::get('/print', [PrintController::class, 'print'])->name('print');
     Route::post('/print-excel', [PrintController::class, 'printExcel'])->name('printExcel');
