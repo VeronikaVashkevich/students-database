@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Печать отчетов')
+
 @section('content')
     <div class="mb-3 d-flex align-items-center">
         <h2>Печать отчетов</h2>

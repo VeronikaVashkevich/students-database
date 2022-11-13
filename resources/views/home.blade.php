@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Главная')
+
 @section('content')
 
     <div class="mb-3 d-flex align-items-center">
