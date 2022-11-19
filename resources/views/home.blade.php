@@ -20,7 +20,7 @@
                 <th scope="col">Дата начала обучения</th>
                 <th scope="col">Дата конца обучения</th>
                 <th scope="col">Организация</th>
-                <th scope="col">Прмиечание</th>
+                <th scope="col">Примечания</th>
             </tr>
         </thead>
         <tbody>
