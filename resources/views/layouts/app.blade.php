@@ -111,9 +111,7 @@
                 </div>
             </div>
             <section id="content">
-                <div class="container">
-                    @include('layouts.breadcrumbs', [])
-
+                <div class="container pt-2">
                     @section('content')
                     @show
                 </div>
