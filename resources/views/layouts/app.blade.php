@@ -100,12 +100,12 @@
                         <strong>{{ Auth::user()->name }}</strong>
                     </a>
                     <ul class="dropdown-menu text-small shadow" style="">
-                        <li><a class="dropdown-item" href="#">Действие</a></li>
-                        <li><a class="dropdown-item" href="#">Действие</a></li>
-                        <li><a class="dropdown-item" href="#">Действие</a></li>
-                        <li>
+                        {{-- <li><a class="dropdown-item" href="#">Действие</a></li> --}}
+                        {{-- <li><a class="dropdown-item" href="#">Действие</a></li> --}}
+                        {{-- <li><a class="dropdown-item" href="#">Действие</a></li> --}}
+                        {{-- <li>
                             <hr class="dropdown-divider">
-                        </li>
+                        </li> --}}
                         <li><a class="dropdown-item" href="{{ route('logout') }}">Выйти</a></li>
                     </ul>
                 </div>
