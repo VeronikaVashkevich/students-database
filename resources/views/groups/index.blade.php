@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             @foreach ($groups as $group)
-                <tr>
+                <tr class="search_row">
                     <th scope="row">{{ $group->id }}</th>
                     <td>{{ $group->name }}</td>
                     <td><a href="{{ route('groups.edit', $group) }}" class="btn btn-success">Редактировать</a></td>

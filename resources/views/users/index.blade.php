@@ -21,7 +21,7 @@
         </thead>
         <tbody>
             @foreach ($methodists as $methodist)
-                <tr>
+                <tr class="search_row">
                     <th scope="row">{{ $methodist->id }}</th>
                     <td>{{ $methodist->name }}</td>
                     <td>{{ $methodist->login }}</td>

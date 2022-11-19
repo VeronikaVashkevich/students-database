@@ -20,7 +20,7 @@
         </thead>
         <tbody>
             @foreach ($organizations as $organization)
-                <tr>
+                <tr class="search_row">
                     <th scope="row">{{ $organization->id }}</th>
                     <td>{{ $organization->name }}</td>
                     <td><a href="{{ route('organizations.edit', $organization) }}" class="btn btn-success">Редактировать</a></td>

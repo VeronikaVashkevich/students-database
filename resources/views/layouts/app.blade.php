@@ -26,10 +26,8 @@
             </a>
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Найти</button>
-                    </form>
+                    <input class="form-control me-2" id="search_string" name="search_string" type="search" placeholder="Поиск по странице" aria-label="Search">
+                    <button class="btn btn-outline-success" type="button" id="clearSearchFiled">Очистить</button>
                 </div>
             </nav>
         </header>
@@ -123,5 +121,21 @@
         </main>
     </div>
 </body>
+
+<script>
+    // поиск на страницах управления
+    $("#search_string").on("keyup", function () {
+        let value = $(this).val().toLowerCase();
+        $(".search_row").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
+
+    // кнопка "очистить поиск"
+    $('#clearSearchFiled').click(function () {
+        $(".search_row").show();
+        $("#search_string").val('')
+    })
+</script>
 
 </html>

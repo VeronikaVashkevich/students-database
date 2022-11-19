@@ -25,7 +25,7 @@
         </thead>
         <tbody>
             @foreach ($students as $student)
-                <tr class="student">
+                <tr class="student search_row">
                     <th scope="row">{{ $student->id }}</th>
                     <td>{{ $student->full_name }}</td>
                     <td>{{ $student->group->name }}</td>
