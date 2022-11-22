@@ -81,6 +81,10 @@ class PrintService extends Service {
             $rawIndex++;
         }
 
+        $rawIndex++;
+        $sheet->setCellValue('A' . $rawIndex, 'Количество слушателей');
+        $sheet->setCellValue('B' . $rawIndex, count($students));
+
         return $spreadsheet;
     }
 

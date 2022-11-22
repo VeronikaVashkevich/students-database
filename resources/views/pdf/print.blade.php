@@ -55,5 +55,8 @@
             @endforeach
         </tbody>
     </table>
+    <div class="mt-3">
+        Количество слушателей: {{ count($students) }}
+    </div>
 </body>
 </html>
