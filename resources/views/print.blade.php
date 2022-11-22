@@ -46,7 +46,7 @@
                     <td>Слушатель</td>
                     {{-- <td><input type="text" name="full_name" id="fullName" class="form-control"></td> --}}
                     <td>
-                        <select name="student" id="student" class="selectpicker" data-live-search="true">
+                        <select name="student" id="student" class="selectpicker form-control" data-live-search="true">
                             <option value=""></option>
                             @foreach ($students as $student)
                                 <option value="{{ $student->id }}">{{ $student->full_name }}</option>
