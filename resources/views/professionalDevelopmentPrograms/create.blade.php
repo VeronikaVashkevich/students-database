@@ -26,8 +26,8 @@
 
         <div class="col-md-6">
             <select id="educationProgram" class="form-select @error('education_program') is-invalid @enderror" name="education_program">
-                @foreach($educationPrograms as $educationProgram)
-                    <option value="{{ $educationProgram->id }}">{{ $educationProgram->name }}</option>
+                @foreach($programs as $key => $educationProgram)
+                    <option value="{{ $key }}" @if($key == $program->education_program) selected @endif>{{ $educationProgram }}</option>
                 @endforeach
             </select>
 

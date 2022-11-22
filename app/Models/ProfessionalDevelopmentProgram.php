@@ -13,11 +13,8 @@ class ProfessionalDevelopmentProgram extends Model
         'name',
         'date_approval_faculty',
         'date_approval_council',
-        'date_approval_rector'
+        'date_approval_rector',
+        'education_program'
     ];
-
-    public function education_program() {
-        return $this->belongsTo(EducationProgram::class, 'education_program_id', 'id');
-    }
 
 }

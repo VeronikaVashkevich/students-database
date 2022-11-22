@@ -27,7 +27,7 @@
                 <tr class="search_row">
                     <th scope="row">{{ $program->id }}</th>
                     <td>{{ $program->name }}</td>
-                    <td>{{ $program->education_program->name }}</td>
+                    <td>{{ $namePrograms[$program->education_program] }}</td>
                     <td>{{ date('d.m.Y', strtotime($program->date_approval_faculty)) }}</td>
                     <td>{{ date('d.m.Y', strtotime($program->date_approval_council)) }}</td>
                     <td>{{ date('d.m.Y', strtotime($program->date_approval_rector)) }}</td>

@@ -65,12 +65,6 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route('educationPrograms.index') }}" class="nav-link link-dark">
-                            <img src="img/journal-text.svg" alt="house icon" class="me-2">
-                            Учебные программы
-                        </a>
-                    </li>
-                    <li>
                         <a href="{{ route('professionalDevelopmentPrograms.index') }}" class="nav-link link-dark">
                             <img src="img/card-text.svg" alt="house icon" class="me-2">
                             Программы повышения квалификации

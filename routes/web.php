@@ -40,7 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('groups', GroupController::class);
     Route::resource('users', UserController::class);
     Route::resource('students', StudentController::class);
-    Route::resource('educationPrograms', EducationProgramController::class);
     Route::resource('professionalDevelopmentPrograms', ProfessionalDevelopmentProgramController::class);
 
     Route::get('/print', [PrintController::class, 'print'])->name('print');

@@ -6,10 +6,15 @@ use App\Models\ProfessionalDevelopmentProgram;
 
 class ProfessionaldevelopmentProgramService extends Service {
 
+    const PROGRAMS = [
+        0 => 'Повышение квалификации',
+        1 => 'Переподготовка'
+    ];
+
     public function createProgram($request, $eidtablerProgram = false) {
         $program = !$eidtablerProgram ? new ProfessionalDevelopmentProgram : $eidtablerProgram;
 
-        $program = $this->setProgramsFields($program, $request->validated());
+        $program = ProfessionalDevelopmentProgram::create($request->validated());
         $program->save();
 
         return $program;
@@ -17,16 +22,6 @@ class ProfessionaldevelopmentProgramService extends Service {
 
     public function deleteProgram($program) {
         $program->delete();
-    }
-
-    private function setProgramsFields($program, $validated) {
-        $program->name = $validated['name'];
-        $program->date_approval_council = $validated['date_approval_council'];
-        $program->date_approval_faculty = $validated['date_approval_faculty'];
-        $program->date_approval_rector = $validated['date_approval_rector'];
-        $program->education_program_id = $validated['education_program'];
-
-        return $program;
     }
 
 }
