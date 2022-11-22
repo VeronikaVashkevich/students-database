@@ -15,7 +15,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Название</th>
-                <th scope="col">Вид учебной Программы</th>
+                <th scope="col">Вид обучения</th>
                 <th scope="col">Дата утверждения ФПК</th>
                 <th scope="col">Дата утверждения НМС</th>
                 <th scope="col">Дата утверждения ректором</th>
