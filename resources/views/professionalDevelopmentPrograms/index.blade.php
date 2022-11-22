@@ -36,7 +36,7 @@
                         <form action="{{ route('professionalDevelopmentPrograms.destroy', $program->id) }}" method="post">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-danger">Удалить</button>
+                            {{-- <button type="submit" class="btn btn-danger">Удалить</button> --}}
                         </form>
                     </td>
                 </tr>
