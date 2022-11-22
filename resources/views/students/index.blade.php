@@ -20,7 +20,9 @@
                 <th scope="col">Дата начала обучения</th>
                 <th scope="col">Дата конца обучения</th>
                 <th scope="col">Организация</th>
-                <th scope="col">Примечания</th>
+                @role('admin')
+                    <th scope="col">Примечания</th>
+                @endrole
                 <th scope="col">Управление</th>
             </tr>
         </thead>
@@ -38,7 +40,9 @@
                     <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>
                     <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>
                     <td>{{ $student->organization->name }}</td>
-                    <td>{!! nl2br(e($student->note)) !!}</td>
+                    @role('admin')
+                        <td>{!! nl2br(e($student->note)) !!}</td>
+                    @endrole
                     <td>
                         <a href="{{ route('students.edit', $student) }}" class="btn btn-success mb-1">Редактировать</a>
                         <form action="{{ route('students.destroy', $student->id) }}" method="post">
