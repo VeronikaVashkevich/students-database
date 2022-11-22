@@ -33,7 +33,6 @@
                 <th scope="col">Дата начала обучения</th>
                 <th scope="col">Дата конца обучения</th>
                 <th scope="col">Организация</th>
-                <th scope="col">Примечания</th>
             </tr>
         </thead>
         <tbody>
@@ -50,7 +49,6 @@
                     <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>
                     <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>
                     <td>{{ $student->organization->name }}</td>
-                    <td>{!! nl2br(e($student->note)) !!}</td>
                 </tr>
             @endforeach
         </tbody>

@@ -9,7 +9,7 @@ use App\Models\Student;
 
 class PrintService extends Service {
 
-    const COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    const COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
     public function getStudentsByFilters($requestData) {
         $filters = $this->getFilters($requestData);
@@ -60,7 +60,6 @@ class PrintService extends Service {
         $sheet->setCellValue('E1', 'Дата начала обучения');
         $sheet->setCellValue('F1', 'Дата конца обучения');
         $sheet->setCellValue('G1', 'Направившая организация');
-        $sheet->setCellValue('H1', 'Примечание');
 
         $rawIndex = 2;
         foreach($students as $student) {
@@ -71,7 +70,6 @@ class PrintService extends Service {
             $sheet->setCellValue('E' . $rawIndex, date('d.m.Y', strtotime($student->date_start_study)));
             $sheet->setCellValue('F' . $rawIndex, date('d.m.Y', strtotime($student->date_finish_study)));
             $sheet->setCellValue('G' . $rawIndex, $student->organization->name);
-            $sheet->setCellValue('H' . $rawIndex, $student->note);
 
             foreach(self::COLUMNS as $column) {
                 $spreadsheet->getActiveSheet()->getStyle($column . $rawIndex)->getAlignment()->setWrapText(true);
