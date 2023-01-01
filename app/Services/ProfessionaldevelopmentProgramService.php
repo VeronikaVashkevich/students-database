@@ -12,7 +12,10 @@ class ProfessionaldevelopmentProgramService extends Service {
     ];
 
     public function createProgram($request, $eidtablerProgram = false) {
-        $program = !$eidtablerProgram ? new ProfessionalDevelopmentProgram : $eidtablerProgram;
+        if ($eidtablerProgram) {
+            $eidtablerProgram->update($request->validated());
+            return $eidtablerProgram;
+        }
 
         $program = ProfessionalDevelopmentProgram::create($request->validated());
         $program->save();
