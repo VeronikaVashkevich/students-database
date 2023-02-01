@@ -59,7 +59,7 @@
         <label for="courses" class="col-md-4 col-form-label text-md-end">Курсы</label>
 
         <div class="col-md-6">
-            <select id="courses" class="@error('courses') is-invalid @enderror form-control" name="courses[]"  multiple="multiple" >
+            <select id="courses" class="@error('courses') is-invalid @enderror form-control" name="course" >
                 @foreach($courses as $course)
                     <option value="{{ $course->id }}">{{ $course->name }}</option>
                 @endforeach

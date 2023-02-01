@@ -29,7 +29,7 @@
                 <th scope="col">#</th>
                 <th scope="col">ФИО</th>
                 <th scope="col">Группа</th>
-                <th scope="col">Курсы</th>
+                <th scope="col">Курс/th>
                 <th scope="col">Дата начала обучения</th>
                 <th scope="col">Дата конца обучения</th>
                 <th scope="col">Организация</th>
@@ -42,9 +42,7 @@
                     <td>{{ $student->full_name }}</td>
                     <td>{{ $student->group->name }}</td>
                     <td>
-                        @foreach ($student->courses as $course)
-                            {{ $course->name }} <br />
-                        @endforeach
+                            {{ $student->course->name }}
                     </td>
                     <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>
                     <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>

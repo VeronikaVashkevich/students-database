@@ -16,9 +16,7 @@ class PrintService extends Service {
 
         $students = Student::query()
                     ->when(!empty($filters['course']), function ($q) use ($filters) {
-                        return $q
-                                ->join('course_student', 'students.id', '=', 'course_student.student_id')
-                                ->where('course_student.course_id', $filters['course']);
+                        return $q->where('course_id', $filters['course']);
                     })
                     ->when(!empty($filters['group']), function ($q) use ($filters) {
                         return $q->where('group_id', '=', $filters['group']);
@@ -56,7 +54,7 @@ class PrintService extends Service {
         $sheet->setCellValue('A1', 'Номер п/п');
         $sheet->setCellValue('B1', 'ФИО слушателя');
         $sheet->setCellValue('C1', 'Группа');
-        $sheet->setCellValue('D1', 'Курсы');
+        $sheet->setCellValue('D1', 'Курс');
         $sheet->setCellValue('E1', 'Дата начала обучения');
         $sheet->setCellValue('F1', 'Дата конца обучения');
         $sheet->setCellValue('G1', 'Направившая организация');
@@ -66,7 +64,7 @@ class PrintService extends Service {
             $sheet->setCellValue('A' . $rawIndex, $student->id);
             $sheet->setCellValue('B' . $rawIndex, $student->full_name);
             $sheet->setCellValue('C' . $rawIndex, $student->group->name);
-            $sheet->setCellValue('D' . $rawIndex, $this->getCoursesForCell($student->courses));
+            $sheet->setCellValue('D' . $rawIndex, $student->course->name);
             $sheet->setCellValue('E' . $rawIndex, date('d.m.Y', strtotime($student->date_start_study)));
             $sheet->setCellValue('F' . $rawIndex, date('d.m.Y', strtotime($student->date_finish_study)));
             $sheet->setCellValue('G' . $rawIndex, $student->organization->name);
@@ -84,16 +82,6 @@ class PrintService extends Service {
         $sheet->setCellValue('B' . $rawIndex, count($students));
 
         return $spreadsheet;
-    }
-
-    private function getCoursesForCell($courses) {
-        $line = '';
-
-        foreach($courses as $course) {
-            $line .= $course->name . "\n";
-        }
-
-        return $line;
     }
 
 }
