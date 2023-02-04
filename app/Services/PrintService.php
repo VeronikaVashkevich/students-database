@@ -9,16 +9,14 @@ use App\Models\Student;
 
 class PrintService extends Service {
 
-    const COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+    const COLUMNS = ['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
     public function getStudentsByFilters($requestData) {
         $filters = $this->getFilters($requestData);
 
         $students = Student::query()
                     ->when(!empty($filters['course']), function ($q) use ($filters) {
-                        return $q
-                                ->join('course_student', 'students.id', '=', 'course_student.student_id')
-                                ->where('course_student.course_id', $filters['course']);
+                        return $q->where('course_id', $filters['course']);
                     })
                     ->when(!empty($filters['group']), function ($q) use ($filters) {
                         return $q->where('group_id', '=', $filters['group']);
@@ -56,22 +54,20 @@ class PrintService extends Service {
         $sheet->setCellValue('A1', 'Номер п/п');
         $sheet->setCellValue('B1', 'ФИО слушателя');
         $sheet->setCellValue('C1', 'Группа');
-        $sheet->setCellValue('D1', 'Курсы');
+        $sheet->setCellValue('D1', 'Курс');
         $sheet->setCellValue('E1', 'Дата начала обучения');
         $sheet->setCellValue('F1', 'Дата конца обучения');
         $sheet->setCellValue('G1', 'Направившая организация');
-        $sheet->setCellValue('H1', 'Примечание');
 
         $rawIndex = 2;
         foreach($students as $student) {
             $sheet->setCellValue('A' . $rawIndex, $student->id);
             $sheet->setCellValue('B' . $rawIndex, $student->full_name);
             $sheet->setCellValue('C' . $rawIndex, $student->group->name);
-            $sheet->setCellValue('D' . $rawIndex, $this->getCoursesForCell($student->courses));
+            $sheet->setCellValue('D' . $rawIndex, $student->course->name);
             $sheet->setCellValue('E' . $rawIndex, date('d.m.Y', strtotime($student->date_start_study)));
             $sheet->setCellValue('F' . $rawIndex, date('d.m.Y', strtotime($student->date_finish_study)));
             $sheet->setCellValue('G' . $rawIndex, $student->organization->name);
-            $sheet->setCellValue('H' . $rawIndex, $student->note);
 
             foreach(self::COLUMNS as $column) {
                 $spreadsheet->getActiveSheet()->getStyle($column . $rawIndex)->getAlignment()->setWrapText(true);
@@ -81,17 +77,11 @@ class PrintService extends Service {
             $rawIndex++;
         }
 
+        $rawIndex++;
+        $sheet->setCellValue('A' . $rawIndex, 'Количество слушателей');
+        $sheet->setCellValue('B' . $rawIndex, count($students));
+
         return $spreadsheet;
-    }
-
-    private function getCoursesForCell($courses) {
-        $line = '';
-
-        foreach($courses as $course) {
-            $line .= $course->name . "\n";
-        }
-
-        return $line;
     }
 
 }

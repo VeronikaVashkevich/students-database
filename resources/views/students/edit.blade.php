@@ -4,20 +4,6 @@
 
 @section('content')
 
-<script>
-    $(document).ready(function () {
-        var courses = [];
-        @foreach($student->courses as $course)
-            courses.push({{ $course->id }})
-        @endforeach
-
-        courses = courses.map(String)
-
-        $('#courses').selectpicker('val', courses);
-        
-    })
-</script>
-
 <form method="POST" action="{{ route('students.update', $student) }}">
     @csrf
     @method('put')
@@ -68,9 +54,9 @@
         <label for="courses" class="col-md-4 col-form-label text-md-end">Курсы</label>
 
         <div class="col-md-6">
-            <select id="courses" class="selectpicker @error('courses') is-invalid @enderror" name="courses[]"  multiple="multiple" >
+            <select id="courses" class="form-select" @error('courses') is-invalid @enderror" name="course" >
                 @foreach($courses as $course)
-                    <option value="{{ $course->id }}" >{{ $course->name }}</option>
+                    <option value="{{ $course->id }}" @if($student->course_id == $course->id) selected @endif>{{ $course->name }}</option>
                 @endforeach
             </select>
 

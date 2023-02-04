@@ -22,7 +22,7 @@
         <header class="d-flex flex-wrap justify-content-center py-3 border-bottom px-5">
             <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
                 <img src="img/bsac_logo.svg" alt="bsac logo" width="40" height="40" class="me-3">
-                <span class="fs-4">БГАС - Система учета слушателей</span>
+                <span class="fs-4">БГАС - ФПК</span>
             </a>
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
@@ -62,12 +62,6 @@
                         <a href="{{ route('groups.index') }}" class="nav-link link-dark">
                             <img src="img/collection.svg" alt="house icon" class="me-2">
                             Группы
-                        </a>
-                    </li>
-                    <li>
-                        <a href="{{ route('educationPrograms.index') }}" class="nav-link link-dark">
-                            <img src="img/journal-text.svg" alt="house icon" class="me-2">
-                            Учебные программы
                         </a>
                     </li>
                     <li>

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfessionalDevelopmentProgram\CreateProfessionalDevelopmentProgramRequest;
-use App\Http\Resources\EducationProgramResource;
 use App\Http\Resources\ProfessionalDevelopmentProgramResource;
-use App\Models\EducationProgram;
 use App\Models\ProfessionalDevelopmentProgram;
 use App\Services\ProfessionaldevelopmentProgramService;
 
@@ -19,7 +17,9 @@ class ProfessionalDevelopmentProgramController extends Controller
     public function index()
     {
         return view('professionalDevelopmentPrograms.index', [
-            'programs' => ProfessionalDevelopmentProgramResource::collection(ProfessionalDevelopmentProgram::all())
+            'programs' => ProfessionalDevelopmentProgramResource::collection(ProfessionalDevelopmentProgram::all()),
+            'namePrograms' => ProfessionaldevelopmentProgramService::PROGRAMS
+            
         ]);
     }
 
@@ -31,7 +31,7 @@ class ProfessionalDevelopmentProgramController extends Controller
     public function create()
     {
         return view('professionalDevelopmentPrograms.create', [
-            'educationPrograms' => EducationProgramResource::collection(EducationProgram::all())
+            'programs' => ProfessionaldevelopmentProgramService::PROGRAMS
         ]);
     }
 
@@ -69,8 +69,8 @@ class ProfessionalDevelopmentProgramController extends Controller
     public function edit(ProfessionalDevelopmentProgram $professionalDevelopmentProgram)
     {
         return view('professionalDevelopmentPrograms.edit', [
-            'educationPrograms' => EducationProgramResource::collection(EducationProgram::all()),
-            'program' => $professionalDevelopmentProgram
+            'program' => $professionalDevelopmentProgram,
+            'programs' => ProfessionaldevelopmentProgramService::PROGRAMS
         ]);
     }
 

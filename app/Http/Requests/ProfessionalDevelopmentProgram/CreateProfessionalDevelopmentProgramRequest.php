@@ -18,7 +18,7 @@ class CreateProfessionalDevelopmentProgramRequest extends FormRequest
             'date_approval_faculty' => 'required|date',
             'date_approval_council' => 'required|date',
             'date_approval_rector' => 'required|date',
-            'education_program' => 'required|exists:education_programs,id'
+            'education_program' => 'required'
         ];
     }
 }

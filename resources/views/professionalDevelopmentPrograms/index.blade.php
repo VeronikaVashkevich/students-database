@@ -15,7 +15,7 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Название</th>
-                <th scope="col">Вид учебной Программы</th>
+                <th scope="col">Вид обучения</th>
                 <th scope="col">Дата утверждения ФПК</th>
                 <th scope="col">Дата утверждения НМС</th>
                 <th scope="col">Дата утверждения ректором</th>
@@ -24,10 +24,10 @@
         </thead>
         <tbody>
             @foreach ($programs as $program)
-                <tr class="search_row">
+                <tr class="search_row @if(strtotime('today -2 years') > strtotime($program->date_approval_rector)) bg-danger bg-opacity-10 @endif">
                     <th scope="row">{{ $program->id }}</th>
                     <td>{{ $program->name }}</td>
-                    <td>{{ $program->education_program->name }}</td>
+                    <td>{{ $namePrograms[$program->education_program] }}</td>
                     <td>{{ date('d.m.Y', strtotime($program->date_approval_faculty)) }}</td>
                     <td>{{ date('d.m.Y', strtotime($program->date_approval_council)) }}</td>
                     <td>{{ date('d.m.Y', strtotime($program->date_approval_rector)) }}</td>
@@ -36,7 +36,7 @@
                         <form action="{{ route('professionalDevelopmentPrograms.destroy', $program->id) }}" method="post">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-danger">Удалить</button>
+                            {{-- <button type="submit" class="btn btn-danger">Удалить</button> --}}
                         </form>
                     </td>
                 </tr>

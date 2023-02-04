@@ -23,19 +23,10 @@ class StudentService extends Service {
             'date_finish_study',
             'group',
             'organization',
+            'course'
         ]), $studentFromRequest);
-        
-        if (!empty($studentFromRequest)) {
-            $this->dropExistingCourses($student->id);
-        }
-
-        $this->storeCourses($data['courses'], $student);
 
         return $student;
-    }
-
-    private function dropExistingCourses($studentId) {
-        DB::table('course_student')->where('student_id', $studentId)->delete();
     }
 
     public function storeCourses($courses, $student) {
@@ -67,6 +58,7 @@ class StudentService extends Service {
         $student->date_finish_study = $data['date_finish_study'];
         $student->group_id = $data['group'];
         $student->organization_id = $data['organization'];
+        $student->course_id = $data['course'];
         $student->note = (!empty($student->note) ? $student->note . "\r\n" : '') . $data['note'];
 
         $student->save();

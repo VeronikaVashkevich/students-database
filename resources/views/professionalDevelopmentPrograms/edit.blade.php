@@ -23,12 +23,12 @@
     </div>
 
     <div class="row mb-3">
-        <label for="educationProgram" class="col-md-4 col-form-label text-md-end">Вид учебной программы</label>
+        <label for="educationProgram" class="col-md-4 col-form-label text-md-end">Вид обучения</label>
 
         <div class="col-md-6">
             <select id="educationProgram" class="form-select @error('education_program') is-invalid @enderror" name="education_program">
-                @foreach($educationPrograms as $educationProgram)
-                    <option value="{{ $educationProgram->id }}" @if($program->education_program_id == $educationProgram->id) selected="selected" @endif>{{ $educationProgram->name }}</option>
+                @foreach($programs as $key => $educationProgram)
+                    <option value="{{ $key }}" @if($key == $program->education_program) selected @endif>{{ $educationProgram }}</option>
                 @endforeach
             </select>
 

@@ -20,8 +20,8 @@ class Student extends Model
         return $this->belongsTo(Group::class, 'group_id', 'id');       
     }
 
-    public function courses() {
-        return $this->belongsToMany(Course::class);
+    public function course() {
+        return $this->belongsTo(Course::class);
     }
 
     public function organization() {
