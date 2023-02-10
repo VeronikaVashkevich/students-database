@@ -16,15 +16,11 @@ class Student extends Model
         'note'
     ];
 
-    public function group() {
-        return $this->belongsTo(Group::class, 'group_id', 'id');       
-    }
-
-    public function course() {
-        return $this->belongsTo(Course::class);
-    }
-
     public function organization() {
         return $this->belongsTo(Organization::class);
+    }
+
+    public function courseStudyItems() {
+        return $this->hasMany(CourseStudyItem::class);
     }
 }

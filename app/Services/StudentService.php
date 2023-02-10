@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\CourseStudyItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Lang;
 use App\Models\Student;
@@ -19,11 +20,7 @@ class StudentService extends Service {
 
         $student = $this->saveStudent($request->only([
             'full_name',
-            'date_start_study',
-            'date_finish_study',
-            'group',
             'organization',
-            'course'
         ]), $studentFromRequest);
 
         return $student;
@@ -54,14 +51,17 @@ class StudentService extends Service {
         $student = empty($studentFromRequest) ? new Student : $studentFromRequest;
 
         $student->full_name = $data['full_name'];
-        $student->date_start_study = $data['date_start_study'];
-        $student->date_finish_study = $data['date_finish_study'];
-        $student->group_id = $data['group'];
         $student->organization_id = $data['organization'];
-        $student->course_id = $data['course'];
         $student->note = (!empty($student->note) ? $student->note . "\r\n" : '') . $data['note'];
 
         $student->save();
+
+        $courseStudyItem = new CourseStudyItem();
+        $courseStudyItem->group_id = $data['group'];
+        $courseStudyItem->course_id = $data['course'];
+        $courseStudyItem->student_id = $student->id;
+        $courseStudyItem->date_start_study = $data['date_start_study'];
+        $courseStudyItem->date_finish_study = $data['date_finish_study'];
 
         return $student;
     }
