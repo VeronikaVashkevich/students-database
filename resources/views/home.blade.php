@@ -15,8 +15,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">ФИО</th>
-                <th scope="col">Дата начала обучения</th>
-                <th scope="col">Дата конца обучения</th>
+{{--                <th scope="col">Дата начала обучения</th>--}}
+{{--                <th scope="col">Дата конца обучения</th>--}}
                 <th scope="col">Организация</th>
                 @role('admin')
                     <th scope="col">Примечания</th>
@@ -28,8 +28,8 @@
                 <tr class="student search_row">
                     <th scope="row">{{ $student->id }}</th>
                     <td>{{ $student->full_name }}</td>
-                    <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>
-                    <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>
+{{--                    <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>--}}
+{{--                    <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>--}}
                     <td>{{ $student->organization->name }}</td>
                     @role('admin')
                         <td>{!! nl2br(e($student->note)) !!}</td>

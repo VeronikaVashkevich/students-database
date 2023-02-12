@@ -8,6 +8,7 @@
     <h2>Слушатели</h2>
 
     <a href="{{ route('students.create') }}" class="ms-3 btn btn-primary">Создать</a>
+    <a href="{{ route('createStudyItem') }}" class="ms-3 btn btn-outline-primary">Добавить информацию о прохождении курсов</a>
 </div>
 
     <table class="table w-100">
@@ -15,8 +16,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">ФИО</th>
-                <th scope="col">Дата начала обучения</th>
-                <th scope="col">Дата конца обучения</th>
+{{--                <th scope="col">Дата начала обучения</th>--}}
+{{--                <th scope="col">Дата конца обучения</th>--}}
                 <th scope="col">Организация</th>
                 @role('admin')
                     <th scope="col">Примечания</th>
@@ -29,8 +30,8 @@
                 <tr class="search_row">
                     <th scope="row">{{ $student->id }}</th>
                     <td>{{ $student->full_name }}</td>
-                    <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>
-                    <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>
+{{--                    <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>--}}
+{{--                    <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>--}}
                     <td>{{ $student->organization->name }}</td>
                     @role('admin')
                         <td>{!! nl2br(e($student->note)) !!}</td>
@@ -40,8 +41,9 @@
                         <form action="{{ route('students.destroy', $student->id) }}" method="post">
                             @method('DELETE')
                             @csrf
-                            <button type="submit" class="btn btn-danger">Удалить</button>
+                            <button type="submit" class="btn btn-danger mb-1">Удалить</button>
                         </form>
+                        <a href="#" class="btn btn-outline-info w-50">Редактировать информацию о прохождении курса</a>
                     </td>
                 </tr>
             @endforeach
