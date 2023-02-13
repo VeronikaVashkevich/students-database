@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('course_study_items', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('srudent_id')->constrained('students', 'id')->cascadeOnDelete();
+            $table->foreignId('student_id')->constrained('students', 'id')->cascadeOnDelete();
             $table->foreignId('course_id')->constrained('courses', 'id')->cascadeOnDelete();
             $table->foreignId('group_id')->constrained('groups', 'id')->cascadeOnDelete();
             $table->date('date_start_study');

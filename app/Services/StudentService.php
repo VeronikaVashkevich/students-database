@@ -14,10 +14,6 @@ class StudentService extends Service {
     public function createStudent($request, $studentFromRequest = []) {
         $data = $request->validated();
 
-        if (!$this->isValidDates($data)) {
-            throw ValidationException::withMessages(['date_finish_study' => Lang::get('validation.date_finish_study_error')]);
-        }
-
         $student = $this->saveStudent($request->only([
             'full_name',
             'organization',
@@ -55,13 +51,6 @@ class StudentService extends Service {
         $student->note = (!empty($student->note) ? $student->note . "\r\n" : '') . $data['note'];
 
         $student->save();
-
-        $courseStudyItem = new CourseStudyItem();
-        $courseStudyItem->group_id = $data['group'];
-        $courseStudyItem->course_id = $data['course'];
-        $courseStudyItem->student_id = $student->id;
-        $courseStudyItem->date_start_study = $data['date_start_study'];
-        $courseStudyItem->date_finish_study = $data['date_finish_study'];
 
         return $student;
     }

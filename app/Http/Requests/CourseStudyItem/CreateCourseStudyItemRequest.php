@@ -7,16 +7,6 @@ use Illuminate\Foundation\Http\FormRequest;
 class CreateCourseStudyItemRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
-        return false;
-    }
-
-    /**
      * Get the validation rules that apply to the request.
      *
      * @return array<string, mixed>
@@ -24,7 +14,29 @@ class CreateCourseStudyItemRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'date_start_study' => [
+                'required',
+                'date',
+            ],
+            'date_finish_study' => [
+                'required',
+                'date',
+            ],
+            'group' => [
+                'required',
+                'exists:groups,id',
+                'integer'
+            ],
+            'course' => [
+                'required',
+                'exists:courses,id',
+                'integer'
+            ],
+            'student' => [
+                'required',
+                'exists:students,id',
+                'integer'
+            ],
         ];
     }
 }

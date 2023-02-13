@@ -15,6 +15,8 @@ class CourseStudyItem extends Model
         'date_start_study'
     ];
 
+    public $timestamps = false;
+
     public function student() {
         return $this->belongsTo(Student::class, 'student_id', 'id');
     }
@@ -26,5 +28,4 @@ class CourseStudyItem extends Model
     public function course() {
         return $this->belongsTo(Course::class, 'course_id', 'id');
     }
-
 }

@@ -6,7 +6,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CourseStudyItem\CreateCourseStudyItemRequest;
 use App\Models\Course;
+use App\Models\Group;
 use App\Models\Student;
+use App\Services\CourseStudyItemsService;
 
 class CourseStudyItemController extends Controller
 {
@@ -14,13 +16,15 @@ class CourseStudyItemController extends Controller
     {
         $courses = Course::all();
         $students = Student::all();
-        return view('courseStudyItems/create', compact('courses', 'students'));
+        $groups = Group::all();
+        return view('courseStudyItems/create', compact('courses', 'students', 'groups'));
     }
 
     public function storeStudyItem(CreateCourseStudyItemRequest $request)
     {
-        return response()->json([
-            'message' => 'Информация сохранена успешно'
-        ], 201);
+        $service = new CourseStudyItemsService();
+        $service->createItem($request);
+
+        return redirect('/students');
     }
 }

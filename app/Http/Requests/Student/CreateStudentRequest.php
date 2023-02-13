@@ -19,27 +19,9 @@ class CreateStudentRequest extends FormRequest
                 'max:400',
                 'string'
             ],
-            'date_start_study' => [
-                'required',
-                'date',
-            ],
-            'date_finish_study' => [
-                'required',
-                'date',
-            ],
-            'group' => [
-                'required',
-                'exists:groups,id',
-                'integer'
-            ],
             'organization' => [
                 'required',
                 'exists:organizations,id',
-                'integer'
-            ],
-            'courses.*' => [
-                'required',
-                'exists:courses,id',
                 'integer'
             ]
         ];
