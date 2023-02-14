@@ -3,7 +3,6 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseStudyItemController;
-use App\Http\Controllers\EducationProgramController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrganizationController;
@@ -44,7 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('professionalDevelopmentPrograms', ProfessionalDevelopmentProgramController::class);
 
     Route::post('/store-study-item', [CourseStudyItemController::class, 'storeStudyItem'])->name('storeStudyItem');
+    Route::put('/update-study-item/{item}', [CourseStudyItemController::class, 'updateStudyItem'])->name('updateStudyItem');
     Route::get('/create-study-item', [CourseStudyItemController::class, 'createStudyItem'])->name('createStudyItem');
+    Route::get('/edit-study-item/{item}', [CourseStudyItemController::class, 'editStudyItem'])->name('editStudyItem');
 
     Route::get('/print', [PrintController::class, 'print'])->name('print');
     Route::post('/print-excel', [PrintController::class, 'printExcel'])->name('printExcel');

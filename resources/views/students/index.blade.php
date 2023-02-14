@@ -40,6 +40,7 @@
                             Группа: {{ $item->group->name }}
                             <br>
                             Срок обучения: {{ date('d.m.Y', strtotime($item->date_start_study)) }} - {{ date('d.m.Y', strtotime($item->date_finish_study)) }}
+                            <a href="{{ route('editStudyItem', $item) }}" class="btn btn-outline-info w-50 mt-1">Редактировать</a>
                             <hr>
                         @endforeach
                     </td>
@@ -53,7 +54,6 @@
                             @csrf
                             <button type="submit" class="btn btn-danger mb-1">Удалить</button>
                         </form>
-                        <a href="#" class="btn btn-outline-info w-50">Редактировать информацию о прохождении курса</a>
                     </td>
                 </tr>
             @endforeach
