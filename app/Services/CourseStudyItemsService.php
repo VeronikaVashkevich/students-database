@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Lang;
 
 class CourseStudyItemsService extends Service {
 
+    const COURSE_CATEGORIES = [
+        '1' => 'Повышение квалификации',
+        '2' => 'Переподготовка'
+    ];
+
     public function createItem($request) {
         $data = $request->validated();
 
@@ -30,6 +35,7 @@ class CourseStudyItemsService extends Service {
         $item->group_id = $data['group'];
         $item->date_start_study = $data['date_start_study'];
         $item->date_finish_study = $data['date_finish_study'];
+        $item->course_category = $data['course_category'];
 
         return $item;
     }

@@ -12,7 +12,8 @@ class CourseStudyItem extends Model
     
     protected $fillable = [
         'date_finish_study',
-        'date_start_study'
+        'date_start_study',
+        'course_category'
     ];
 
     public $timestamps = false;

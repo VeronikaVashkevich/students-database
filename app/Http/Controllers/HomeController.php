@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\OrganizationResource;
 use App\Models\Organization;
 use App\Models\Student;
+use App\Services\CourseStudyItemsService;
 
 class HomeController extends Controller
 {
@@ -27,7 +28,8 @@ class HomeController extends Controller
     {
         $students = Student::all();
         $organizations = OrganizationResource::collection(Organization::all());
+        $courseCategories = CourseStudyItemsService::COURSE_CATEGORIES;
 
-        return view('home', compact('students', 'organizations'));
+        return view('home', compact('students', 'organizations', 'courseCategories'));
     }
 }

@@ -37,6 +37,8 @@
                         @foreach($student->courseStudyItems as $item) 
                             Название курса: {{ $item->course->name }}
                             <br>
+                            Категория курсов: {{ $courseCategories[$item->course_category] }}
+                            <br>
                             Группа: {{ $item->group->name }}
                             <br>
                             Срок обучения: {{ date('d.m.Y', strtotime($item->date_start_study)) }} - {{ date('d.m.Y', strtotime($item->date_finish_study)) }}

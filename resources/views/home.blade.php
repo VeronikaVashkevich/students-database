@@ -18,6 +18,7 @@
 {{--                <th scope="col">Дата начала обучения</th>--}}
 {{--                <th scope="col">Дата конца обучения</th>--}}
                 <th scope="col">Организация</th>
+                <th scope="col">Информация о прохождении курсов</th>
                 @role('admin')
                     <th scope="col">Примечания</th>
                 @endrole
@@ -31,6 +32,17 @@
 {{--                    <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>--}}
 {{--                    <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>--}}
                     <td>{{ $student->organization->name }}</td>
+                    <td>
+                        @foreach($student->courseStudyItems as $item) 
+                            Название курса: {{ $item->course->name }}
+                            <br>
+                            Категория курсов: {{ $courseCategories[$item->course_category] }}
+                            <br>
+                            Группа: {{ $item->group->name }}
+                            <br>
+                            Срок обучения: {{ date('d.m.Y', strtotime($item->date_start_study)) }} - {{ date('d.m.Y', strtotime($item->date_finish_study)) }}                            <hr>
+                        @endforeach
+                    </td>
                     @role('admin')
                         <td>{!! nl2br(e($student->note)) !!}</td>
                     @endrole

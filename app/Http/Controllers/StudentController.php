@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Student\CreateStudentRequest;
-use App\Models\Course;
-use App\Http\Resources\CourseResource;
 use App\Models\Group;
-use App\Http\Resources\GroupResource;
-use App\Http\Resources\OrganizationResource;
-use App\Models\Organization;
+use App\Models\Course;
 use App\Models\Student;
-use App\Services\StudentService;
+use App\Models\Organization;
 use Illuminate\Http\Request;
+use App\Services\StudentService;
+use App\Http\Resources\GroupResource;
+use App\Http\Resources\CourseResource;
+use App\Services\CourseStudyItemsService;
+use App\Http\Resources\OrganizationResource;
+use App\Http\Requests\Student\CreateStudentRequest;
 
 class StudentController extends Controller
 {
@@ -23,8 +24,9 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::all();
+        $courseCategories = CourseStudyItemsService::COURSE_CATEGORIES;
 
-        return view('students.index', compact('students'));
+        return view('students.index', compact('students', 'courseCategories'));
     }
 
     /**

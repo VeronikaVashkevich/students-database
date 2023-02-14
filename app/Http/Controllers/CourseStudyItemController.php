@@ -19,8 +19,9 @@ class CourseStudyItemController extends Controller
         $courses = Course::all();
         $students = Student::all();
         $groups = Group::all();
+        $courseCategories = CourseStudyItemsService::COURSE_CATEGORIES;
 
-        return view('courseStudyItems.create', compact('courses', 'students', 'groups'));
+        return view('courseStudyItems.create', compact('courses', 'students', 'groups', 'courseCategories'));
     }
 
 
@@ -28,12 +29,14 @@ class CourseStudyItemController extends Controller
         $courses = Course::all();
         $students = Student::all();
         $groups = Group::all();
+        $courseCategories = CourseStudyItemsService::COURSE_CATEGORIES;
 
         return view('courseStudyItems.edit', [
             'courses' => $courses,
             'students' => $students,
             'groups' => $groups,
-            'item' => $item
+            'item' => $item,
+            'courseCategories' => $courseCategories
         ]);
     }
 

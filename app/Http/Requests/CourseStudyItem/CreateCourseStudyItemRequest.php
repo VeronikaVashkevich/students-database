@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\CourseStudyItem;
 
+use App\Services\CourseStudyItemsService;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CreateCourseStudyItemRequest extends FormRequest
 {
@@ -37,6 +39,10 @@ class CreateCourseStudyItemRequest extends FormRequest
                 'exists:students,id',
                 'integer'
             ],
+            'course_category' => [
+                'required',
+                Rule::in(array_keys(CourseStudyItemsService::COURSE_CATEGORIES))
+            ]
         ];
     }
 }

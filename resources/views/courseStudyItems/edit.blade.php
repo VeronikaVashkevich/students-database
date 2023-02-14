@@ -26,6 +26,24 @@
         </div>
 
         <div class="row mb-3">
+            <label for="course_category" class="col-md-4 col-form-label text-md-end">Категория курсов</label>
+
+            <div class="col-md-6">
+                <select id="course_category" class="@error('course_category') is-invalid @enderror form-control" data-live-search="true"
+                    name="course_category">
+                    @foreach ($courseCategories as $key => $courseCategory)
+                        <option @if($item->course_category == $key) selected @endif value="{{ $key }}">{{ $courseCategory }}</option>
+                    @endforeach
+                </select>
+                @error('course_category')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+        </div>
+
+        <div class="row mb-3">
             <label for="group" class="col-md-4 col-form-label text-md-end">Группа</label>
 
             <div class="col-md-6">
