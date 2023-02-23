@@ -16,16 +16,28 @@ class PrintService extends Service {
 
         $students = Student::query()
                     ->when(!empty($filters['course']), function ($q) use ($filters) {
-                        return $q->where('course_id', $filters['course']);
+                        return $q
+                            ->select('students.*')
+                            ->join('course_study_items', 'course_study_items.student_id', '=', 'students.id')
+                            ->where('course_study_items.course_id', $filters['course']);
                     })
                     ->when(!empty($filters['group']), function ($q) use ($filters) {
-                        return $q->where('group_id', '=', $filters['group']);
+                            return $q
+                                ->select('students.*')
+                                ->join('course_study_items', 'course_study_items.student_id', '=', 'students.id')
+                                ->where('course_study_items.group_id', $filters['group']);
                     })
                     ->when(!empty($filters['date_start_study']), function ($q) use ($filters) {
-                        return $q->where('date_start_study', '=', $filters['date_start_study']);
+                        return $q
+                            ->select('students.*')
+                            ->join('course_study_items', 'course_study_items.student_id', '=', 'students.id')
+                            ->where('course_study_items.date_start_study', $filters['date_start_study']);
                     })
                     ->when(!empty($filters['date_finish_study']), function ($q) use ($filters) {
-                        return $q->where('date_finish_study', '=', $filters['date_finish_study']);
+                        return $q
+                            ->select('students.*')
+                            ->join('course_study_items', 'course_study_items.student_id', '=', 'students.id')
+                            ->where('course_study_items.date_finish_study', $filters['date_finish_study']);
                     })
                     ->when(!empty($filters['organization']), function ($q) use ($filters) {
                         return $q->where('organization_id', '=', $filters['organization']);
@@ -53,33 +65,40 @@ class PrintService extends Service {
 
         $sheet->setCellValue('A1', 'Номер п/п');
         $sheet->setCellValue('B1', 'ФИО слушателя');
-        $sheet->setCellValue('C1', 'Группа');
-        $sheet->setCellValue('D1', 'Курс');
-        $sheet->setCellValue('E1', 'Дата начала обучения');
-        $sheet->setCellValue('F1', 'Дата конца обучения');
-        $sheet->setCellValue('G1', 'Направившая организация');
+        $sheet->setCellValue('C1', 'Направившая организация');
+        $sheet->mergeCells('D1:G1');
+        $sheet->setCellValue('D1', 'Информация о прохождении курсов');
+//        $sheet->setCellValue('D1', 'Курс');
+//        $sheet->setCellValue('E1', 'Дата начала обучения');
+//        $sheet->setCellValue('F1', 'Дата конца обучения');
 
         $rawIndex = 2;
         foreach($students as $student) {
             $sheet->setCellValue('A' . $rawIndex, $student->id);
             $sheet->setCellValue('B' . $rawIndex, $student->full_name);
-            $sheet->setCellValue('C' . $rawIndex, $student->group->name);
-            $sheet->setCellValue('D' . $rawIndex, $student->course->name);
-            $sheet->setCellValue('E' . $rawIndex, date('d.m.Y', strtotime($student->date_start_study)));
-            $sheet->setCellValue('F' . $rawIndex, date('d.m.Y', strtotime($student->date_finish_study)));
-            $sheet->setCellValue('G' . $rawIndex, $student->organization->name);
-
-            foreach(self::COLUMNS as $column) {
-                $spreadsheet->getActiveSheet()->getStyle($column . $rawIndex)->getAlignment()->setWrapText(true);
-                $spreadsheet->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+            $sheet->setCellValue('C' . $rawIndex, $student->organization->name);
+            foreach ($student->courseStudyItems as $item) {
+                $sheet->setCellValue('D' . $rawIndex, $item->group->name);
+                $sheet->setCellValue('E' . $rawIndex, $item->course->name);
+                $sheet->setCellValue('F' . $rawIndex, date('d.m.Y', strtotime($item->date_start_study)));
+                $sheet->setCellValue('G' . $rawIndex, date('d.m.Y', strtotime($item->date_finish_study)));
+                $rawIndex++;
             }
 
             $rawIndex++;
         }
 
+        for ($i = 0; $i < $rawIndex; $i++) {
+            foreach (self::COLUMNS as $column) {
+                $spreadsheet->getActiveSheet()->getStyle($column . $i)->getAlignment()->setWrapText(true);
+                $spreadsheet->getActiveSheet()->getColumnDimension($column)->setAutoSize(true);
+            }
+        }
+
         $rawIndex++;
+        $sheet->mergeCells('A' . $rawIndex . ':' . 'C' . $rawIndex);
         $sheet->setCellValue('A' . $rawIndex, 'Количество слушателей');
-        $sheet->setCellValue('B' . $rawIndex, count($students));
+        $sheet->setCellValue('D' . $rawIndex, count($students));
 
         return $spreadsheet;
     }

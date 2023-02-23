@@ -19,7 +19,7 @@
                 <tr>
                     <td>Курс</td>
                     <td>
-                        <select name="course" id="course" class="form-select">
+                        <select name="course" id="course" class="form-control" data-live-search="true">
                             <option value=""></option>
                             @foreach ($courses as $course)
                                 <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -46,7 +46,7 @@
                     <td>Слушатель</td>
                     {{-- <td><input type="text" name="full_name" id="fullName" class="form-control"></td> --}}
                     <td>
-                        <select name="student" id="student" class="selectpicker form-control" data-live-search="true">
+                        <select name="student" id="student" class="form-control" data-live-search="true" data-live-search="true">
                             <option value=""></option>
                             @foreach ($students as $student)
                                 <option value="{{ $student->id }}">{{ $student->full_name }}</option>
@@ -58,7 +58,7 @@
                 <tr>
                     <td>Группа</td>
                     <td>
-                        <select name="group" id="group" class="form-select">
+                        <select name="group" id="group" class="form-control" data-live-search="true">
                             <option value=""></option>
                             @foreach ($groups as $group)
                                 <option value="{{ $group->id }}">{{ $group->name }}</option>
@@ -70,7 +70,7 @@
                 <tr>
                     <td>Направившая организация</td>
                     <td>
-                        <select name="organization" id="organization" class="form-select">
+                        <select name="organization" id="organization" class="form-control" data-live-search="true">
                             <option value=""></option>
                             @foreach ($organizations as $organization)
                                 <option value="{{ $organization->id }}">{{ $organization->name }}</option>
@@ -107,7 +107,9 @@
 
             $('[name="source"]').change(function () {
                 $('form').attr('action', '/print-' + $('[name="source"]:checked').val());
-            }).change()
+            }).change();
+
+            $('select').selectpicker();
         });
     </script>
 @endsection
