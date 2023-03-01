@@ -43,7 +43,7 @@ class PrintService extends Service {
                         return $q->where('organization_id', '=', $filters['organization']);
                     })
                     ->when(!empty($filters['student']), function ($q) use ($filters) {
-                        return $q->where('id', '=', $filters['student']);
+                        return Student::where('id', $filters['student']);
                     })
                     ->get();
 
@@ -68,9 +68,6 @@ class PrintService extends Service {
         $sheet->setCellValue('C1', 'Направившая организация');
         $sheet->mergeCells('D1:G1');
         $sheet->setCellValue('D1', 'Информация о прохождении курсов');
-//        $sheet->setCellValue('D1', 'Курс');
-//        $sheet->setCellValue('E1', 'Дата начала обучения');
-//        $sheet->setCellValue('F1', 'Дата конца обучения');
 
         $rawIndex = 2;
         foreach($students as $student) {
