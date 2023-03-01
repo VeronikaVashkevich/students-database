@@ -13,6 +13,10 @@
             font-size: 12px;
         }
 
+        table {
+            width: 100%;
+        }
+
         table, th, td {
             border: 1px solid black;
             border-collapse: collapse;
@@ -28,25 +32,27 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">ФИО</th>
-                <th scope="col">Группа</th>
-                <th scope="col">Курс/th>
-                <th scope="col">Дата начала обучения</th>
-                <th scope="col">Дата конца обучения</th>
                 <th scope="col">Организация</th>
+                <th scope="col">Информация о прохождении курсов</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($students as $student)
-                <tr class="student">
+                <tr class="student search_row">
                     <th scope="row">{{ $student->id }}</th>
                     <td>{{ $student->full_name }}</td>
-                    <td>{{ $student->group->name }}</td>
-                    <td>
-                            {{ $student->course->name }}
-                    </td>
-                    <td>{{ date('d.m.Y', strtotime($student->date_start_study)) }}</td>
-                    <td>{{ date('d.m.Y', strtotime($student->date_finish_study)) }}</td>
                     <td>{{ $student->organization->name }}</td>
+                    <td>
+                        @foreach($student->courseStudyItems as $item) 
+                            Название курса: {{ $item->course->name }}
+                            <br>
+                            Категория курсов: {{ $courseCategories[$item->course_category] }}
+                            <br>
+                            Группа: {{ $item->group->name }}
+                            <br>
+                            Срок обучения: {{ date('d.m.Y', strtotime($item->date_start_study)) }} - {{ date('d.m.Y', strtotime($item->date_finish_study)) }}                            <hr>
+                        @endforeach
+                    </td>
                 </tr>
             @endforeach
         </tbody>

@@ -6,6 +6,7 @@ use App\Http\Resources\CourseResource;
 use App\Http\Resources\OrganizationResource;
 use App\Http\Resources\GroupResource;
 use App\Models\Course;
+use App\Services\CourseStudyItemsService;
 use App\Models\Group;
 use App\Models\Organization;
 use App\Models\Student;
@@ -38,8 +39,9 @@ class PrintController extends Controller
     public function printPdf(Request $request) {
         $service = new PrintService();
         $students = $service->getStudentsByFilters($request->all());
+        $courseCategories = CourseStudyItemsService::COURSE_CATEGORIES;
 
-        $pdf = PDF::loadView('pdf.print', compact('students'))->setPaper('a4', 'landscape');
+        $pdf = PDF::loadView('pdf.print', compact('students', 'courseCategories'))->setPaper('a4', 'landscape');
         return $pdf->download('report' . date('d-m-Y H-i-s') . '.pdf');
     }
 }
